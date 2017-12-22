@@ -1,3 +1,7 @@
+import sys
+caffe_root = '/home/lxz/wxshan/caffe/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
+sys.path.insert(0, caffe_root + 'python')
+
 import caffe
 import numpy as np
 

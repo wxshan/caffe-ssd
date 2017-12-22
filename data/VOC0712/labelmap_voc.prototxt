@@ -103,3 +103,8 @@ item {
   label: 20
   display_name: "tvmonitor"
 }
+item {
+  name: "earthworks"
+  label: 21
+  display_name: "earthworks"
+}

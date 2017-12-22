@@ -1,4 +1,8 @@
 from __future__ import print_function
+import sys
+caffe_root = '/home/lxz/wxshan/caffe/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
+sys.path.insert(0, caffe_root + 'python')
+
 import caffe
 from caffe.model_libs import *
 from google.protobuf import text_format
@@ -8,7 +12,7 @@ import os
 import shutil
 import stat
 import subprocess
-import sys
+
 
 # Add extra layers on top of a "base" network (e.g. VGGNet or Inception).
 def AddExtraLayers(net, use_batchnorm=True, lr_mult=1):
@@ -99,7 +103,7 @@ test_iter = int(math.pow(2, 29) - 1)
 # Use GPU or CPU
 solver_mode = P.Solver.GPU
 # Defining which GPUs to use.
-gpus = "0"
+gpus = "3"
 # Number of frames to be processed per batch.
 test_batch_size = 1
 # Only display high quality detections whose scores are higher than a threshold.
@@ -288,4 +292,4 @@ shutil.copy(py_file, job_dir)
 # Run the job.
 os.chmod(job_file, stat.S_IRWXU)
 if run_soon:
-  subprocess.call(job_file, shell=True)
+    subprocess.call(job_file, shell=True)

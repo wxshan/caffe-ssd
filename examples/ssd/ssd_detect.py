@@ -10,9 +10,10 @@ import argparse
 import numpy as np
 from PIL import Image, ImageDraw
 # Make sure that caffe is on the python path:
-caffe_root = './'
-os.chdir(caffe_root)
-sys.path.insert(0, os.path.join(caffe_root, 'python'))
+import sys
+caffe_root = '/home/lxz/wxshan/caffe/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
+sys.path.insert(0, caffe_root + 'python')
+
 import caffe
 
 from google.protobuf import text_format
@@ -133,16 +134,15 @@ def main(args):
 def parse_args():
     '''parse args'''
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gpu_id', type=int, default=0, help='gpu id')
+    parser.add_argument('--gpu_id', type=int, default=3, help='gpu id')
     parser.add_argument('--labelmap_file',
-                        default='data/VOC0712/labelmap_voc.prototxt')
+                        default='/home/lxz/wxshan/caffe/data/mydataset/labelmap_voc.prototxt')
     parser.add_argument('--model_def',
-                        default='models/VGGNet/VOC0712/SSD_300x300/deploy.prototxt')
+                        default='/home/lxz/wxshan/caffe/models/VGGNet/mydataset/SSD_300x300/deploy.prototxt')
     parser.add_argument('--image_resize', default=300, type=int)
     parser.add_argument('--model_weights',
-                        default='models/VGGNet/VOC0712/SSD_300x300/'
-                        'VGG_VOC0712_SSD_300x300_iter_120000.caffemodel')
-    parser.add_argument('--image_file', default='examples/images/fish-bike.jpg')
+                        default='/home/lxz/wxshan/caffe/models/VGGNet/mydataset/SSD_300x300/VGG_mydataset_SSD_300x300_iter_71000.caffemodel')
+    parser.add_argument('--image_file', default='/home/lxz/wxshan/caffe/data/VOCdevkit/mydatanet/JPEGImages/000001.jpg')
     return parser.parse_args()
 
 if __name__ == '__main__':

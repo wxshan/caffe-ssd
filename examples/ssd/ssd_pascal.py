@@ -1,4 +1,8 @@
 from __future__ import print_function
+import sys
+caffe_root = '/home/lxz/wxshan/caffe/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
+sys.path.insert(0, caffe_root + 'python')
+
 import caffe
 from caffe.model_libs import *
 from google.protobuf import text_format
@@ -329,12 +333,12 @@ clip = False
 
 # Solver parameters.
 # Defining which GPUs to use.
-gpus = "0,1,2,3"
+gpus = "2,3"
 gpulist = gpus.split(",")
 num_gpus = len(gpulist)
 
 # Divide the mini-batch to different GPUs.
-batch_size = 32
+batch_size = 16
 accum_batch_size = 32
 iter_size = accum_batch_size / batch_size
 solver_mode = P.Solver.CPU
@@ -356,7 +360,7 @@ elif normalization_mode == P.Loss.FULL:
   base_lr *= 2000.
 
 # Evaluate on whole test set.
-num_test_image = 4952
+num_test_image = 4000
 test_batch_size = 8
 # Ideally test_batch_size should be divisible by num_test_image,
 # otherwise mAP will be slightly off the true value.
@@ -372,7 +376,7 @@ solver_param = {
     'momentum': 0.9,
     'iter_size': iter_size,
     'max_iter': 120000,
-    'snapshot': 80000,
+    'snapshot': 5000,
     'display': 10,
     'average_loss': 10,
     'type': "SGD",
