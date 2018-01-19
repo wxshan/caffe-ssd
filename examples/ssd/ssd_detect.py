@@ -134,14 +134,14 @@ def main(args):
 def parse_args():
     '''parse args'''
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gpu_id', type=int, default=3, help='gpu id')
+    parser.add_argument('--gpu_id', type=int, default=2, help='gpu id')
     parser.add_argument('--labelmap_file',
-                        default='/home/lxz/wxshan/caffe/data/mydataset/labelmap_voc.prototxt')
+                        default='/home/lxz/wxshan/caffe/data/myfacedata/labelmap_voc.prototxt')
     parser.add_argument('--model_def',
-                        default='/home/lxz/wxshan/caffe/models/VGGNet/mydataset/SSD_300x300/deploy.prototxt')
+                        default='/home/lxz/wxshan/caffe/models/VGGNet/myfacedata/SSD_300x300/deploy.prototxt')
     parser.add_argument('--image_resize', default=300, type=int)
     parser.add_argument('--model_weights',
-                        default='/home/lxz/wxshan/caffe/models/VGGNet/mydataset/SSD_300x300/VGG_mydataset_SSD_300x300_iter_71000.caffemodel')
+                        default='/home/lxz/wxshan/caffe/models/VGGNet/myfacedata/SSD_300x300/VGG_mydataset_SSD_300x300_iter_71000.caffemodel')
     parser.add_argument('--image_file', default='/home/lxz/wxshan/caffe/data/VOCdevkit/mydatanet/JPEGImages/000001.jpg')
     return parser.parse_args()
 

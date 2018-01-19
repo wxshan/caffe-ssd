@@ -77,7 +77,7 @@ caffe_root = os.getcwd()
 # Set true if you want to start training right after generating all files.
 run_soon = True
 # The video file path
-video_file = "examples/videos/ILSVRC2015_train_00755001.mp4"
+video_file = "/home/lxz/video/face/out.avi"
 
 # The parameters for the video demo
 
@@ -85,14 +85,14 @@ video_file = "examples/videos/ILSVRC2015_train_00755001.mp4"
 # If true, use batch norm for all newly added layers.
 # Currently only the non batch norm version has been tested.
 use_batchnorm = False
-num_classes = 21
+num_classes = 2
 share_location = True
 background_label_id=0
 conf_loss_type = P.MultiBoxLoss.SOFTMAX
 code_type = P.PriorBox.CENTER_SIZE
 lr_mult = 1.
 # Stores LabelMapItem.
-label_map_file = "data/VOC0712/labelmap_voc.prototxt"
+label_map_file = "data/mydataset/labelmap_voc.prototxt"
 # The resized image size
 resize_width = 300
 resize_height = 300
@@ -103,11 +103,11 @@ test_iter = int(math.pow(2, 29) - 1)
 # Use GPU or CPU
 solver_mode = P.Solver.GPU
 # Defining which GPUs to use.
-gpus = "3"
+gpus = "0"
 # Number of frames to be processed per batch.
 test_batch_size = 1
 # Only display high quality detections whose scores are higher than a threshold.
-visualize_threshold = 0.3
+visualize_threshold = 0.25
 # Size of video image.
 video_width = 1280
 video_height = 720
@@ -159,14 +159,14 @@ det_out_param = {
 # The job name should be same as the name used in examples/ssd/ssd_pascal.py.
 job_name = "SSD_{}".format(resize)
 # The name of the model. Modify it if you want.
-model_name = "VGG_VOC0712_{}".format(job_name)
+model_name = "VGG_mydataset_{}".format(job_name)
 
 # Directory which stores the model .prototxt file.
-save_dir = "models/VGGNet/VOC0712/{}_video".format(job_name)
+save_dir = "models/VGGNet/mydataset/{}_video".format(job_name)
 # Directory which stores the snapshot of trained models.
-snapshot_dir = "models/VGGNet/VOC0712/{}".format(job_name)
+snapshot_dir = "models/VGGNet/mydataset/{}".format(job_name)
 # Directory which stores the job script and log file.
-job_dir = "jobs/VGGNet/VOC0712/{}_video".format(job_name)
+job_dir = "jobs/VGGNet/mydataset/{}_video".format(job_name)
 
 # model definition files.
 test_net_file = "{}/test.prototxt".format(save_dir)

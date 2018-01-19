@@ -81,10 +81,10 @@ caffe_root = os.getcwd()
 # Set true if you want to start training right after generating all files.
 run_soon = True
 
-# The database file for training data. Created by data/VOC0712/create_data.sh
-train_data = "examples/VOC0712/VOC0712_trainval_lmdb"
-# The database file for testing data. Created by data/VOC0712/create_data.sh
-test_data = "examples/VOC0712/VOC0712_test_lmdb"
+# The database file for training data. Created by data/VOC1228/create_data.sh
+train_data = "/home/lxz/wxshan/caffe/examples/VOC1228/VOC1228_trainval_lmdb"
+# The database file for testing data. Created by data/VOC1228/create_data.sh
+test_data = "/home/lxz/wxshan/caffe/examples/VOC1228/VOC1228_test_lmdb"
 # Specify the batch sampler.
 resize_width = 300
 resize_height = 300
@@ -237,14 +237,14 @@ else:
 # The job name should be same as the name used in examples/ssd/ssd_pascal.py.
 job_name = "SSD_{}".format(resize)
 # The name of the model. Modify it if you want.
-model_name = "VGG_VOC0712_{}".format(job_name)
+model_name = "VGG_VOC1228_{}".format(job_name)
 
 # Directory which stores the model .prototxt file.
-save_dir = "models/VGGNet/VOC0712/{}_score".format(job_name)
+save_dir = "models/VGGNet/VOC1228/{}_score".format(job_name)
 # Directory which stores the snapshot of trained models.
-snapshot_dir = "models/VGGNet/VOC0712/{}".format(job_name)
+snapshot_dir = "models/VGGNet/VOC1228/{}".format(job_name)
 # Directory which stores the job script and log file.
-job_dir = "jobs/VGGNet/VOC0712/{}_score".format(job_name)
+job_dir = "jobs/VGGNet/VOC1228/{}_score".format(job_name)
 # Directory which stores the detection results.
 output_result_dir = "{}/data/VOCdevkit/results/VOC2007/{}_score/Main".format(os.environ['HOME'], job_name)
 
@@ -271,15 +271,15 @@ if max_iter == 0:
   print("Cannot find snapshot in {}".format(snapshot_dir))
   sys.exit()
 
-# Stores the test image names and sizes. Created by data/VOC0712/create_list.sh
-name_size_file = "data/VOC0712/test_name_size.txt"
+# Stores the test image names and sizes. Created by data/VOC1228/create_list.sh
+name_size_file = "data/VOC1228/test_name_size.txt"
 # The resume model.
 pretrain_model = "{}_iter_{}.caffemodel".format(snapshot_prefix, max_iter)
 # Stores LabelMapItem.
-label_map_file = "data/VOC0712/labelmap_voc.prototxt"
+label_map_file = "data/VOC1228/labelmap_voc.prototxt"
 
 # MultiBoxLoss parameters.
-num_classes = 21
+num_classes = 2
 share_location = True
 background_label_id=0
 train_on_diff_gt = True
@@ -345,12 +345,12 @@ clip = False
 
 # Solver parameters.
 # Defining which GPUs to use.
-gpus = "0"
+gpus = "3"
 gpulist = gpus.split(",")
 num_gpus = len(gpulist)
 
 # The number does not matter since we do not do training with this script.
-batch_size = 1
+batch_size = 32
 accum_batch_size = 1
 iter_size = accum_batch_size / batch_size
 solver_mode = P.Solver.CPU
@@ -372,8 +372,8 @@ elif normalization_mode == P.Loss.FULL:
   base_lr *= 2000.
 
 # Evaluate on whole test set.
-num_test_image = 4952
-test_batch_size = 8
+num_test_image = 1200
+test_batch_size = 16
 # Ideally test_batch_size should be divisible by num_test_image,
 # otherwise mAP will be slightly off the true value.
 test_iter = int(math.ceil(float(num_test_image) / test_batch_size))
